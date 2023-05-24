@@ -1,0 +1,114 @@
+ Queries
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+1. Send request for follow
+insert
+	into
+	request
+(following_id,
+	follower_id)
+values(1,
+11);
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+2. List followers
+select
+	follower_id
+from
+	following
+where
+	following_id = 1;
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+3. List following
+select
+	following_id
+from
+	following
+where
+	follower_id = 1;
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+4. List pending follow requests
+select
+	following_id
+from
+	request
+where
+	follower_id = 1;
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+5. List Pending following requests (i.e. here you have to show the list of that users whom you have requested)
+select
+	follower_id
+from
+	request
+where
+	following_id = 1;
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+6. Accept/Reject follow request
+--Accept
+insert
+	into
+	following
+(follower_id,
+	following_id)
+values(1,
+12);
+
+delete
+from
+	request
+where
+	following_id = 12
+	and follower_id = 1;
+
+------------------------------------
+--Reject
+delete
+from
+	request
+where
+	following_id = 12
+	and follower_id = 1;
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+7. Remove pending follow request (i.e. if you have sent follow request to someone and you can delete it)
+delete
+from
+	request
+where
+	follower_id = 12
+	and following_id = 1;
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+8.remove from followers
+delete
+from
+	following
+where
+	follower_id = 1
+	and following_id =9;
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+9.remove from following
+delete
+from
+	following
+where
+	following_id = 1
+	and follower_id =7;
+
+
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
